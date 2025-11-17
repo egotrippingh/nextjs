@@ -3,6 +3,7 @@ import {Geist, Geist_Mono} from "next/font/google";
 import "./globals.css";
 import {Providers} from "@/providers/provider";
 import Header from "@/components/ui/header";
+import {siteConfig} from "@/config/site.config";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,8 +16,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Главная станица",
-  description: "Дескрипшен",
+  title: siteConfig.title,
+  description: siteConfig.description,
 };
 
 export default function RootLayout({
@@ -31,7 +32,9 @@ export default function RootLayout({
     >
       <Providers>
         <Header />
-        {children}
+        <div className='h-full'>
+          {children}
+        </div>
       </Providers>
     </body>
     </html>

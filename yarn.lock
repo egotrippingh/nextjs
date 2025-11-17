@@ -376,7 +376,7 @@
     "@react-aria/focus" "3.21.2"
     "@react-types/breadcrumbs" "3.7.17"
 
-"@heroui/button@2.2.27":
+"@heroui/button@2.2.27", "@heroui/button@^2.2.27":
   version "2.2.27"
   resolved "https://registry.yarnpkg.com/@heroui/button/-/button-2.2.27.tgz#ecc1abffef1bc69f7d43fccf151278ce8861785a"
   integrity sha512-Fxb8rtjPQm9T4GAtB1oW2QMUiQCtn7EtvO5AN41ANxAgmsNMM5wnLTkxQ05vNueCrp47kTDtSuyMhKU2llATHQ==

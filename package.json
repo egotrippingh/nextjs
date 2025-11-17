@@ -1,5 +1,5 @@
 {
-  "name": "nextjs",
+  "name": "VelvetKutchen",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -10,6 +10,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@heroui/button": "^2.2.27",
     "@heroui/navbar": "^2.2.25",
     "@heroui/react": "^2.8.5",
     "framer-motion": "^12.23.24",

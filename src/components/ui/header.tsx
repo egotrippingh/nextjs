@@ -6,64 +6,69 @@ import {
   NavbarBrand,
   NavbarContent,
   NavbarItem,
-  Link,
   Button
 } from "@heroui/react";
+import Image from 'next/image';
+import Link from "next/link";
+import {usePathname} from "next/navigation";
+import {siteConfig} from "@/config/site.config";
+
+
 
 export const AcmeLogo = () => {
   return (
-    <svg
-      fill="none"
-      height="36"
-      viewBox="0 0 32 32"
-      width="36"
-    >
-      <path
-        clipRule="evenodd"
-        d="M17.6482 10.1305L15.8785 7.02583L7.02979 22.5499H10.5278L17.6482 10.1305ZM19.8798 14.0457L18.11 17.1983L19.394 19.4511H16.8453L15.1056 22.5499H24.7272L19.8798 14.0457Z"
-        fill="currentColor"
-        fillRule="evenodd"
-      />
-    </svg>
+    <Image
+      src='/logo_tatar_kitchen.png'
+      alt='logo'
+      width={26}
+      height={26}
+      preload={true}
+    />
   );
 };
 
-export default function Header() {
+function Header() {
+
+  const getNavItems = () => {
+    return siteConfig.navItems.map((item, i) => {
+      const isActive = pathname === item.link
+      return (
+        <NavbarItem key={i}>
+          <Link
+            href={item.link}
+            key={i}
+            className={
+              `font-bold text-md px-3 py-1 transition-colors 
+                duration-200 ${isActive ? "text-purple-800 " +
+                "hover:text-purple-500" :
+                'hover:text-purple-500'}`
+            }
+          >
+            {item.label}
+          </Link>
+        </NavbarItem>
+      )
+    })
+  }
+
+  const pathname = usePathname()
+
   return (
     <Navbar>
       <NavbarBrand>
         <AcmeLogo />
-        <p className="font-bold text-inherit">ACME</p>
+        <Link href="/" className="flex gap-1">
+          <p className="font-bold text-inherit">Velvet Kütchen</p>
+        </Link>
       </NavbarBrand>
+
       <NavbarContent
         className="hidden sm:flex gap-4"
         justify="center"
       >
-        <NavbarItem>
-          <Link
-            color="foreground"
-            href="#"
-          >
-            Features
-          </Link>
-        </NavbarItem>
-        <NavbarItem isActive>
-          <Link
-            aria-current="page"
-            href="#"
-          >
-            Customers
-          </Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Link
-            color="foreground"
-            href="#"
-          >
-            Integrations
-          </Link>
-        </NavbarItem>
+        {getNavItems()}
       </NavbarContent>
+
       <NavbarContent justify="end">
         <NavbarItem className="hidden lg:flex">
           <Link href="#">Login</Link>
@@ -72,13 +77,16 @@ export default function Header() {
           <Button
             as={Link}
             color="primary"
-            href="#"
+            href="/signup"
             variant="flat"
           >
             Sign Up
           </Button>
         </NavbarItem>
       </NavbarContent>
+
     </Navbar>
   );
 }
+
+export default Header
